@@ -3,11 +3,15 @@
     <div class="field">
       <%= f.label :title, "Title" %> <span style="color: red; display: inline-block; "> * </span> <br>
       <%= f.text_field :title %>
-      <% if @product.errors.any? and @product.title.blank? %>
-          <div style=" font-size: 0.5em; font-family: arial; color: red;">
-            Title can't be blank.
-          </div>
+
+      <% if @product.errors[:title].any? %>
+          <% @product.errors[:title].each do |msg| %>
+              <div style=" font-size: 0.5em; font-family: arial; color: red;">
+                <%= msg %>
+              </div>
+          <% end %>
       <% end %>
+
     </div>
     <br>
 
@@ -20,12 +24,16 @@
     <div class="field">
       <%= f.label :price %> <span style="color: red;"> * </span> <br>
       <%= f.text_field :price %>
-      <% if @product.errors.any? and @product.price.blank? %>
-          <div style=" font-size: 0.5em; font-family: arial; color: red;">
-            Price can't be blank.
-          </div>
+
+      <% if @product.errors[:price].any? %>
+          <% @product.errors[:price].each do |msg|%>
+              <div style=" font-size: 0.5em; font-family: arial; color: red;">
+                <%= msg %>
+              </div>
+          <% end %>
       <% end %>
-    </div>
+
+    </div> <br>
     <div class="actions">
       <%= f.submit %>
     </div>
